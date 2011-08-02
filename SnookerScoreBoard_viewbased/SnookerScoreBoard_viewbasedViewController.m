@@ -273,7 +273,7 @@
     [self.List2 reloadData];
     
     NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:(1.0)target:self selector:@selector(onTimer) userInfo:nil repeats:YES];	
-    [t release];
+  //  [t release];
     time(&t_start);
 }
 - (void) onTimer
@@ -494,6 +494,7 @@
         }
 //        cell.textLabel.font = [UIFont boldSystemFontOfSize:30];
         cell.textLabel.font = [UIFont systemFontOfSize:20];
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
         
 #ifdef __IPHONE_3_0    
         if (row < 7)
@@ -525,6 +526,7 @@
 //        cell.textLabel.text = [listData2 objectAtIndex:row];
 //        cell.textLabel.font = [UIFont boldSystemFontOfSize:30];
         cell.textLabel.font = [UIFont systemFontOfSize:20];
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
         
 #ifdef __IPHONE_3_0    
         if (row < 7)
