@@ -7,10 +7,14 @@
 //
 
 #import "SnookerScoreBoard_viewbasedViewController.h"
+#include <time.h>
 
 @implementation SnookerScoreBoard_viewbasedViewController
 
 @synthesize List1 = _List1;
+@synthesize score1;
+@synthesize score2;
+@synthesize timer;
 @synthesize List2 = _List2;
 @synthesize listData1,listData2, one_pot, btsInInputView;
 
@@ -18,6 +22,9 @@
 {
     [List1 release];
     [List2 release];
+    [score1 release];
+    [score2 release];
+    [timer release];
     [super dealloc];
 }
 
@@ -35,6 +42,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    currentRow = -1;
     [super viewDidLoad];
     // Observe keyboard hide and show notifications to resize the text view appropriately.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -42,8 +50,9 @@
     
     [self InitTableView];
     input_view = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 150, 300, 50)];
+   // input_view.alpha = 0; // transparent
     [self.view addSubview:input_view];
-    input_view.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0];
+    //input_view.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0];
     input_view.hidden = YES;
     input_view.scrollEnabled = YES;
     [self InitKeyboardView]; 
@@ -64,6 +73,18 @@
     [_List1 setDelegate:self];
     _List1.scrollEnabled = YES;
     _List1.tag = 100;
+//    //为视图增加边框      
+//    _List1.clipsToBounds=YES;      
+//    _List1.layer  cornerRadius=20.0;      
+//    _List1.layer.borderWidth=10.0;      
+//    _List1.layer.borderColor=[[UIColor blueColor] CGColor];      
+//    
+//    //为视图添加圆角
+//    
+//    _List1.layer.cornerRadius = 6;
+//    _List1.layer.masksToBounds = YES;
+    
+
     [self.view addSubview:_List1];   
     
     [_List2 setDataSource:self];
@@ -74,7 +95,8 @@
 }
 
 - (void)InitKeyboardView{
-    keyboard_view = [[UIView alloc] initWithFrame:CGRectMake(0, 360, 320, 100)];
+  //  keyboard_view = [[UIView alloc] initWithFrame:CGRectMake(0, 360, 320, 100)];
+     keyboard_view = [[UIView alloc] initWithFrame:CGRectMake(0, 480, 320, 100)];
     [self.view addSubview:keyboard_view];
     keyboard_view.hidden = YES;
     keyboard_view.backgroundColor = [UIColor colorWithRed:125/255.0 green:133/255.0 blue:145/255.0 alpha:1.0];
@@ -90,13 +112,13 @@
     [btn setFrame:CGRectMake((width+padding)*0+2, grid_height*0+8, width, height)];
     [btn setBackgroundImage:[UIImage imageNamed:@"redboll.png"] forState:UIControlStateNormal];
     UIFont *font = [UIFont systemFontOfSize:30.0];
-//    self.layer.cornerRadius = 8.0f;
-//    self.layer.masksToBounds = NO;
-//    self.layer.borderWidth = 1.0f;
-//    btn.layer.shadowOffset =  CGSizeMake(3, 5);  
-//    btn.layer.shadowOpacity = 0.8;  
-//    btn.layer.shadowColor =  [UIColor blackColor].CGColor;
-    btn.font = font;
+//    btn.titleLabel.cornerRadius = 8.0f;
+//    btn.titleLabel.masksToBounds = NO;
+//    btn.titleLabel.borderWidth = 1.0f;
+    btn.titleLabel.shadowOffset =  CGSizeMake(3, 5);  
+//    btn.titleLabel.shadowOpacity = 0.8;  
+    btn.titleLabel.shadowColor =  [UIColor blackColor];
+    btn.titleLabel.font = font;
    // [btn setTitle:[NSString stringWithFormat:@"%@", @"red"] forState:UIControlStateNormal];
     [btn setTag:1];
     [btn addTarget:self action:@selector(add_score_red:) forControlEvents:UIControlEventTouchUpInside];
@@ -201,6 +223,9 @@
 {
     [self setList1:nil];
     [self setList2:nil];
+    [self setScore1:nil];
+    [self setScore2:nil];
+    [self setTimer:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -233,8 +258,10 @@
         //[bt dealloc];
     }
     if ([self.btsInInputView count] > 0)
-    [self.btsInInputView removeAllObjects];
-//    if ([self.one_pot count]>0)
+        [self.btsInInputView removeAllObjects];
+    input_view.frame=CGRectMake(10, 150, 300, 50);
+    [input_view setContentSize:CGSizeMake(300,50)];
+    //    if ([self.one_pot count]>0)
 //        [self.one_pot removeAllObjects];
 }
 - (IBAction)onRestart:(id)sender {
@@ -244,21 +271,46 @@
         [self.listData2 removeAllObjects];
     [self.List1 reloadData];
     [self.List2 reloadData];
+    
+    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:(1.0)target:self selector:@selector(onTimer) userInfo:nil repeats:YES];	
+    [t release];
+    time(&t_start);
 }
-
+- (void) onTimer
+{
+    time_t t;
+    time(&t);
+    long tt = t - t_start;
+    int h = tt/3600;
+    int m = (tt - h*3600)/60;
+    int s = (tt - h*3600 - m*60);
+    [self.timer setText:[NSString stringWithFormat:@"%02d:%02d:%02d", h, m, s ]];
+}
 - (IBAction)AddScore1:(id)sender {
+    // show keyboard and input view
     keyboard_view.hidden  = NO;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    [keyboard_view setFrame:CGRectMake(0, 360, 320, 100)];
+    [UIView commitAnimations];
     input_view.hidden = NO;
     self.one_pot = [NSMutableArray arrayWithCapacity:30];
+    [listData1 addObject:one_pot];
     user = 1;
     [self cleanInputView];
     
 }
 
 - (IBAction)AddScore2:(id)sender {
+    // show keyboard and input view
     keyboard_view.hidden  = NO;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    [keyboard_view setFrame:CGRectMake(0, 360, 320, 100)];
+    [UIView commitAnimations];
     input_view.hidden = NO;
     self.one_pot = [NSMutableArray arrayWithCapacity:30];
+    [listData2 addObject:one_pot];
     user = 2;
     [self cleanInputView];
     
@@ -268,9 +320,14 @@
     UIButton *bsender = sender;
     int score = bsender.tag;
     if (bsender.tag > 0){
-    NSLog(@"RED BOLL");
+    NSLog(@"add boll");
     
     int size = [self.one_pot count];
+    if (size >= 30){
+        
+        [[[[UIAlertView alloc] initWithTitle:@"error!" message:@"Cannot add more than 30 boll" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease] show];
+        return;
+    }
     int col = (size)%6;
     int row = (size)/6;
     
@@ -285,15 +342,15 @@
     switch (bsender.tag){
         case 1: image_name = @"redboll.png";break;
         case 2: image_name = @"yellowboll.png";break; 
-            case 3: image_name = @"greenboll.png";break; 
-            case 4: image_name = @"brownboll.png";break; 
-            case 5: image_name = @"blueboll.png";break; 
-            case 6: image_name = @"pinkboll.png";break;
+        case 3: image_name = @"greenboll.png";break; 
+        case 4: image_name = @"brownboll.png";break; 
+        case 5: image_name = @"blueboll.png";break; 
+        case 6: image_name = @"pinkboll.png";break;
         case 7: image_name = @"blackboll.png";break; 
     }
     [btn setBackgroundImage:[UIImage imageNamed:image_name] forState:UIControlStateNormal];
     UIFont *font = [UIFont systemFontOfSize:30.0];
-    btn.font = font;
+    btn.titleLabel.font = font;
     [input_view addSubview:btn];
     if (row > 3)
     [input_view scrollRectToVisible:CGRectMake(10+40.0*col+2, 45.0*row+8, 36.0, 41.0) animated:true];
@@ -314,27 +371,81 @@
         NSLog(@"save");
         if (user == 1){
             //[self.listData1 addObject:[NSString stringWithFormat:@"%d", sum]];
-            [self.listData1 addObject:self.one_pot];
+//            if (currentRow >= 0){
+//              currentRow = -1;
+//            }
+//                else{
+//                    [self.listData1 addObject:self.one_pot];
+//                  
+//                }
             [self.List1 reloadData];
         }
         else if (user ==2){
+//            if (currentRow >= 0){
+//                currentRow = -1;
+//            }
+//            else{
+//                [self.listData2 addObject:self.one_pot];
+//                
+//            }
 //            [self.listData2 addObject:[NSString stringWithFormat:@"%d", sum]];
-            [self.listData2 addObject:self.one_pot];
+   
             [self.List2 reloadData];
         }
+
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.5];
+        [keyboard_view setFrame:CGRectMake(0, 480, 320, 100)];
+        [UIView commitAnimations];
         keyboard_view.hidden  = YES;
         input_view.hidden = YES;
+        
+        if ([listData2 count]>5){
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[listData2 count] inSection:0];
+          //  int r = indexPath.row;
+            [self.List2 scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
+        }
+        if ([listData1 count]>5){
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[listData1 count] inSection:0];
+            //  int r = indexPath.row;
+            [self.List1 scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
+        }
+        
+        // update total score
+        [self update_score];
+        
+        
     }
 }
 
-
+- (void) update_score {
+    int sum = 0;
+    for (int i = 0; i< [listData1 count]; i++){
+        NSMutableArray* pot = [listData1 objectAtIndex:i];
+        for (int j = 0; j<[pot count]; j++){
+            sum += [[pot objectAtIndex:j] integerValue];
+        }
+    }
+    [self.score1 setText:[[NSString alloc] initWithFormat:@"%d", sum]];
+    
+    sum = 0;
+    for (int i = 0; i< [listData2 count]; i++){
+        NSMutableArray* pot = [listData2 objectAtIndex:i];
+        for (int j = 0; j<[pot count]; j++){
+            sum += [[pot objectAtIndex:j] integerValue];
+        }
+    }
+    [self.score2 setText:[[NSString alloc] initWithFormat:@"%d", sum]];
+    
+    return;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView.tag == 100) {
-        return [self.listData1 count];
+        return [self.listData1 count]+1;
         
     }else if (tableView.tag == 200) {
-        return [self.listData2 count];
+        return [self.listData2 count]+1;
     }
     
 }
@@ -370,12 +481,17 @@
         cell.imageView.highlightedImage = image2;
         
         NSUInteger row = [indexPath row];
-        NSMutableArray *pot = [listData1 objectAtIndex:row];
-        int sum = 0;
-        for (int i = 0; i<[pot count]; i++){
-           sum += [[pot objectAtIndex:i] integerValue];
+        if (row < [listData1 count]){
+            NSMutableArray *pot = [listData1 objectAtIndex:row];
+            int sum = 0;
+            for (int i = 0; i<[pot count]; i++){
+               sum += [[pot objectAtIndex:i] integerValue];
+            }
+            cell.textLabel.text = [[NSString alloc] initWithFormat:@"%d", sum];
         }
-        cell.textLabel.text = [[NSString alloc] initWithFormat:@"%d", sum];
+        else{
+             cell.textLabel.text = @"  ";
+        }
 //        cell.textLabel.font = [UIFont boldSystemFontOfSize:30];
         cell.textLabel.font = [UIFont systemFontOfSize:20];
         
@@ -396,12 +512,16 @@
         cell.imageView.highlightedImage = image2;
         
         NSUInteger row = [indexPath row];
-        NSMutableArray *pot = [listData2 objectAtIndex:row];
-        int sum = 0;
-        for (int i = 0; i<[pot count]; i++){
-            sum += [[pot objectAtIndex:i] integerValue];
+        if (row < [listData2 count]){
+            NSMutableArray *pot = [listData2 objectAtIndex:row];
+            int sum = 0;
+            for (int i = 0; i<[pot count]; i++){
+                sum += [[pot objectAtIndex:i] integerValue];
+            }
+            cell.textLabel.text = [[NSString alloc] initWithFormat:@"%d", sum];
+        }else{
+            cell.textLabel.text = @"  ";
         }
-        cell.textLabel.text = [[NSString alloc] initWithFormat:@"%d", sum];
 //        cell.textLabel.text = [listData2 objectAtIndex:row];
 //        cell.textLabel.font = [UIFont boldSystemFontOfSize:30];
         cell.textLabel.font = [UIFont systemFontOfSize:20];
@@ -453,19 +573,70 @@
 {
     
     NSUInteger row = [indexPath row];
-    NSString *rowValue;
+//    NSString *rowValue;
     
-    
+    // show keyboard and input view
+    keyboard_view.hidden  = NO;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    [keyboard_view setFrame:CGRectMake(0, 360, 320, 100)];
+    [UIView commitAnimations];
+
+    input_view.hidden = NO;
+
+    [self cleanInputView];
     if (tableView.tag == 100) {
-        rowValue = [listData1 objectAtIndex:row];
+            user = 1;
+//        rowValue = [listData1 objectAtIndex:row];
+        if (row >= [listData1 count]){
+             self.one_pot = [NSMutableArray arrayWithCapacity:30];
+            [listData1 addObject: one_pot];
+//            currentRow = row;
+        }else
+            self.one_pot = [listData1 objectAtIndex:row];
     }else {
-        rowValue = [listData2 objectAtIndex:row];
+            user = 2;
+       // rowValue = [listData2 objectAtIndex:row];
+        if (row >= [listData2 count]){
+            self.one_pot = [NSMutableArray arrayWithCapacity:30];
+            [listData2 addObject: one_pot];
+//            currentRow = row;
+        }else
+            self.one_pot = [listData2 objectAtIndex:row];
+    }
+    currentRow = row;
+    
+    // load bolls
+    if (currentRow >=0 ){
+        for (int i = 0; i< [self.one_pot count]; i++){
+            int col = (i)%6;
+            int row = (i)/6;
+            UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btn setFrame:CGRectMake(10+45.0*col+2, 45.0*row+8, 41.0, 41.0)];
+            NSString *image_name = @"";
+            switch ([[self.one_pot objectAtIndex:i] intValue]){
+                case 1: image_name = @"redboll.png";break;
+                case 2: image_name = @"yellowboll.png";break; 
+                case 3: image_name = @"greenboll.png";break; 
+                case 4: image_name = @"brownboll.png";break; 
+                case 5: image_name = @"blueboll.png";break; 
+                case 6: image_name = @"pinkboll.png";break;
+                case 7: image_name = @"blackboll.png";break; 
+            }
+            [btn setBackgroundImage:[UIImage imageNamed:image_name] forState:UIControlStateNormal];
+            UIFont *font = [UIFont systemFontOfSize:30.0];
+            btn.titleLabel.font = font;
+            [input_view addSubview:btn];
+            if (row > 3)
+                [input_view scrollRectToVisible:CGRectMake(10+40.0*col+2, 45.0*row+8, 36.0, 41.0) animated:true];
+            
+            [self.btsInInputView addObject:btn];
+
+        }
     }
     
     
-    
-    
-    NSString *message = [[NSString alloc] initWithFormat:
+  /*  NSString *message = [[NSString alloc] initWithFormat:
                          @"You selected %@", rowValue];
     UIAlertView *alert = [[UIAlertView alloc] 
                           initWithTitle:@"Row Selected!"
@@ -476,7 +647,7 @@
     [alert show];
     
     [message release];
-    [alert release];
+    [alert release];*/
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

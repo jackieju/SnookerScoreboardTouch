@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbasedViewController.m"
-         timestampString = "333997966.856994"
+         timestampString = "334010259.092276"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "280"
-         endingLineNumber = "280"
+         startingLineNumber = "337"
+         endingLineNumber = "337"
          landmarkName = "-add_score_red:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -23,12 +23,40 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbasedViewController.m"
-         timestampString = "333997966.856994"
+         timestampString = "334010259.092276"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "278"
-         endingLineNumber = "278"
+         startingLineNumber = "335"
+         endingLineNumber = "335"
          landmarkName = "-add_score_red:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbasedViewController.m"
+         timestampString = "334010259.092276"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "406"
+         endingLineNumber = "406"
+         landmarkName = "-add_score_red:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbasedViewController.m"
+         timestampString = "334010594.199831"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "287"
+         endingLineNumber = "287"
+         landmarkName = "-onTimer"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
