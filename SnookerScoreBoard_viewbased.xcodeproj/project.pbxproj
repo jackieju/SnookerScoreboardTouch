@@ -1,0 +1,324 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5A54BCB213E508E3007BAA97 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A54BCB113E508E3007BAA97 /* UIKit.framework */; };
+		5A54BCB413E508E3007BAA97 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A54BCB313E508E3007BAA97 /* Foundation.framework */; };
+		5A54BCB613E508E3007BAA97 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A54BCB513E508E3007BAA97 /* CoreGraphics.framework */; };
+		5A54BCBC13E508E3007BAA97 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5A54BCBA13E508E3007BAA97 /* InfoPlist.strings */; };
+		5A54BCBF13E508E3007BAA97 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A54BCBE13E508E3007BAA97 /* main.m */; };
+		5A54BCC213E508E3007BAA97 /* SnookerScoreBoard_viewbasedAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A54BCC113E508E3007BAA97 /* SnookerScoreBoard_viewbasedAppDelegate.m */; };
+		5A54BCC513E508E3007BAA97 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A54BCC313E508E3007BAA97 /* MainWindow.xib */; };
+		5A54BCC813E508E3007BAA97 /* SnookerScoreBoard_viewbasedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A54BCC713E508E3007BAA97 /* SnookerScoreBoard_viewbasedViewController.m */; };
+		5A54BCCB13E508E3007BAA97 /* SnookerScoreBoard_viewbasedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A54BCC913E508E3007BAA97 /* SnookerScoreBoard_viewbasedViewController.xib */; };
+		5A87D35413E6B3E600480A87 /* redboll.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A87D35313E6B3E600480A87 /* redboll.png */; };
+		5A87D35D13E74EAA00480A87 /* blackboll.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A87D35713E74EAA00480A87 /* blackboll.png */; };
+		5A87D35E13E74EAA00480A87 /* brownboll.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A87D35813E74EAA00480A87 /* brownboll.png */; };
+		5A87D35F13E74EAA00480A87 /* yellowboll.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A87D35913E74EAA00480A87 /* yellowboll.png */; };
+		5A87D36013E74EAA00480A87 /* greenboll.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A87D35A13E74EAA00480A87 /* greenboll.png */; };
+		5A87D36113E74EAA00480A87 /* blueboll.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A87D35B13E74EAA00480A87 /* blueboll.png */; };
+		5A87D36213E74EAA00480A87 /* pinkboll.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A87D35C13E74EAA00480A87 /* pinkboll.png */; };
+		5A87D36413E75E2C00480A87 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A87D36313E75E2C00480A87 /* back.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5A54BCAD13E508E3007BAA97 /* SnookerScoreBoard_viewbased.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnookerScoreBoard_viewbased.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A54BCB113E508E3007BAA97 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5A54BCB313E508E3007BAA97 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5A54BCB513E508E3007BAA97 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5A54BCB913E508E3007BAA97 /* SnookerScoreBoard_viewbased-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SnookerScoreBoard_viewbased-Info.plist"; sourceTree = "<group>"; };
+		5A54BCBB13E508E3007BAA97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A54BCBD13E508E3007BAA97 /* SnookerScoreBoard_viewbased-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SnookerScoreBoard_viewbased-Prefix.pch"; sourceTree = "<group>"; };
+		5A54BCBE13E508E3007BAA97 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5A54BCC013E508E3007BAA97 /* SnookerScoreBoard_viewbasedAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnookerScoreBoard_viewbasedAppDelegate.h; sourceTree = "<group>"; };
+		5A54BCC113E508E3007BAA97 /* SnookerScoreBoard_viewbasedAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnookerScoreBoard_viewbasedAppDelegate.m; sourceTree = "<group>"; };
+		5A54BCC413E508E3007BAA97 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		5A54BCC613E508E3007BAA97 /* SnookerScoreBoard_viewbasedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnookerScoreBoard_viewbasedViewController.h; sourceTree = "<group>"; };
+		5A54BCC713E508E3007BAA97 /* SnookerScoreBoard_viewbasedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnookerScoreBoard_viewbasedViewController.m; sourceTree = "<group>"; };
+		5A54BCCA13E508E3007BAA97 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SnookerScoreBoard_viewbasedViewController.xib; sourceTree = "<group>"; };
+		5A87D35313E6B3E600480A87 /* redboll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redboll.png; path = SnookerScoreBoard_viewbased/redboll.png; sourceTree = "<group>"; };
+		5A87D35713E74EAA00480A87 /* blackboll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackboll.png; sourceTree = "<group>"; };
+		5A87D35813E74EAA00480A87 /* brownboll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brownboll.png; sourceTree = "<group>"; };
+		5A87D35913E74EAA00480A87 /* yellowboll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowboll.png; sourceTree = "<group>"; };
+		5A87D35A13E74EAA00480A87 /* greenboll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenboll.png; sourceTree = "<group>"; };
+		5A87D35B13E74EAA00480A87 /* blueboll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueboll.png; sourceTree = "<group>"; };
+		5A87D35C13E74EAA00480A87 /* pinkboll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinkboll.png; sourceTree = "<group>"; };
+		5A87D36313E75E2C00480A87 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5A54BCAA13E508E3007BAA97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A54BCB213E508E3007BAA97 /* UIKit.framework in Frameworks */,
+				5A54BCB413E508E3007BAA97 /* Foundation.framework in Frameworks */,
+				5A54BCB613E508E3007BAA97 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5A54BCA213E508E2007BAA97 = {
+			isa = PBXGroup;
+			children = (
+				5A87D35613E6B3ED00480A87 /* Resources */,
+				5A54BCB713E508E3007BAA97 /* SnookerScoreBoard_viewbased */,
+				5A54BCB013E508E3007BAA97 /* Frameworks */,
+				5A54BCAE13E508E3007BAA97 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5A54BCAE13E508E3007BAA97 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5A54BCAD13E508E3007BAA97 /* SnookerScoreBoard_viewbased.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5A54BCB013E508E3007BAA97 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5A54BCB113E508E3007BAA97 /* UIKit.framework */,
+				5A54BCB313E508E3007BAA97 /* Foundation.framework */,
+				5A54BCB513E508E3007BAA97 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5A54BCB713E508E3007BAA97 /* SnookerScoreBoard_viewbased */ = {
+			isa = PBXGroup;
+			children = (
+				5A54BCC013E508E3007BAA97 /* SnookerScoreBoard_viewbasedAppDelegate.h */,
+				5A54BCC113E508E3007BAA97 /* SnookerScoreBoard_viewbasedAppDelegate.m */,
+				5A54BCC313E508E3007BAA97 /* MainWindow.xib */,
+				5A54BCC613E508E3007BAA97 /* SnookerScoreBoard_viewbasedViewController.h */,
+				5A54BCC713E508E3007BAA97 /* SnookerScoreBoard_viewbasedViewController.m */,
+				5A54BCC913E508E3007BAA97 /* SnookerScoreBoard_viewbasedViewController.xib */,
+				5A54BCB813E508E3007BAA97 /* Supporting Files */,
+			);
+			path = SnookerScoreBoard_viewbased;
+			sourceTree = "<group>";
+		};
+		5A54BCB813E508E3007BAA97 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5A54BCB913E508E3007BAA97 /* SnookerScoreBoard_viewbased-Info.plist */,
+				5A54BCBA13E508E3007BAA97 /* InfoPlist.strings */,
+				5A54BCBD13E508E3007BAA97 /* SnookerScoreBoard_viewbased-Prefix.pch */,
+				5A54BCBE13E508E3007BAA97 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5A87D35613E6B3ED00480A87 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5A87D35313E6B3E600480A87 /* redboll.png */,
+				5A87D35713E74EAA00480A87 /* blackboll.png */,
+				5A87D35813E74EAA00480A87 /* brownboll.png */,
+				5A87D35913E74EAA00480A87 /* yellowboll.png */,
+				5A87D35A13E74EAA00480A87 /* greenboll.png */,
+				5A87D35B13E74EAA00480A87 /* blueboll.png */,
+				5A87D36313E75E2C00480A87 /* back.png */,
+				5A87D35C13E74EAA00480A87 /* pinkboll.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5A54BCAC13E508E3007BAA97 /* SnookerScoreBoard_viewbased */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A54BCCE13E508E3007BAA97 /* Build configuration list for PBXNativeTarget "SnookerScoreBoard_viewbased" */;
+			buildPhases = (
+				5A54BCA913E508E3007BAA97 /* Sources */,
+				5A54BCAA13E508E3007BAA97 /* Frameworks */,
+				5A54BCAB13E508E3007BAA97 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SnookerScoreBoard_viewbased;
+			productName = SnookerScoreBoard_viewbased;
+			productReference = 5A54BCAD13E508E3007BAA97 /* SnookerScoreBoard_viewbased.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5A54BCA413E508E2007BAA97 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 5A54BCA713E508E2007BAA97 /* Build configuration list for PBXProject "SnookerScoreBoard_viewbased" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5A54BCA213E508E2007BAA97;
+			productRefGroup = 5A54BCAE13E508E3007BAA97 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5A54BCAC13E508E3007BAA97 /* SnookerScoreBoard_viewbased */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5A54BCAB13E508E3007BAA97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A54BCBC13E508E3007BAA97 /* InfoPlist.strings in Resources */,
+				5A54BCC513E508E3007BAA97 /* MainWindow.xib in Resources */,
+				5A54BCCB13E508E3007BAA97 /* SnookerScoreBoard_viewbasedViewController.xib in Resources */,
+				5A87D35413E6B3E600480A87 /* redboll.png in Resources */,
+				5A87D35D13E74EAA00480A87 /* blackboll.png in Resources */,
+				5A87D35E13E74EAA00480A87 /* brownboll.png in Resources */,
+				5A87D35F13E74EAA00480A87 /* yellowboll.png in Resources */,
+				5A87D36013E74EAA00480A87 /* greenboll.png in Resources */,
+				5A87D36113E74EAA00480A87 /* blueboll.png in Resources */,
+				5A87D36213E74EAA00480A87 /* pinkboll.png in Resources */,
+				5A87D36413E75E2C00480A87 /* back.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5A54BCA913E508E3007BAA97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A54BCBF13E508E3007BAA97 /* main.m in Sources */,
+				5A54BCC213E508E3007BAA97 /* SnookerScoreBoard_viewbasedAppDelegate.m in Sources */,
+				5A54BCC813E508E3007BAA97 /* SnookerScoreBoard_viewbasedViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5A54BCBA13E508E3007BAA97 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5A54BCBB13E508E3007BAA97 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		5A54BCC313E508E3007BAA97 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5A54BCC413E508E3007BAA97 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		5A54BCC913E508E3007BAA97 /* SnookerScoreBoard_viewbasedViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5A54BCCA13E508E3007BAA97 /* en */,
+			);
+			name = SnookerScoreBoard_viewbasedViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5A54BCCC13E508E3007BAA97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5A54BCCD13E508E3007BAA97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		5A54BCCF13E508E3007BAA97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Prefix.pch";
+				INFOPLIST_FILE = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		5A54BCD013E508E3007BAA97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Prefix.pch";
+				INFOPLIST_FILE = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5A54BCA713E508E2007BAA97 /* Build configuration list for PBXProject "SnookerScoreBoard_viewbased" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A54BCCC13E508E3007BAA97 /* Debug */,
+				5A54BCCD13E508E3007BAA97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A54BCCE13E508E3007BAA97 /* Build configuration list for PBXNativeTarget "SnookerScoreBoard_viewbased" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A54BCCF13E508E3007BAA97 /* Debug */,
+				5A54BCD013E508E3007BAA97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5A54BCA413E508E2007BAA97 /* Project object */;
+}
