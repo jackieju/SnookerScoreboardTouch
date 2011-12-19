@@ -15,8 +15,10 @@
 @synthesize score1;
 @synthesize score2;
 @synthesize timer;
+@synthesize btStart;
 @synthesize List2 = _List2;
 @synthesize listData1,listData2, one_pot, btsInInputView;
+@synthesize game_timer;
 
 - (void)dealloc
 {
@@ -25,6 +27,7 @@
     [score1 release];
     [score2 release];
     [timer release];
+    [btStart release];
     [super dealloc];
 }
 
@@ -42,8 +45,14 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    game_status = 0;
     currentRow = -1;
     [super viewDidLoad];
+   /* UIImageView *backView = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];  
+    [backView setImage:[UIImage imageNamed:@"back.jpg"]];  
+    [backView setUserInteractionEnabled:YES]; 
+    self.view = backView;
+     [backView release];  */
     // Observe keyboard hide and show notifications to resize the text view appropriately.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -208,11 +217,12 @@
    // [btn setBackgroundImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
     //    UIFont *font = [UIFont systemFontOfSize:30.0];
     //    btn.font = font;
-    [btn setTitle:[NSString stringWithFormat:@"%@", @"Save"] forState:UIControlStateNormal];
+    [btn setTitle:[NSString stringWithFormat:@"%@", @"Close"] forState:UIControlStateNormal];
     [btn setTag:-2];
     [btn addTarget:self action:@selector(add_score_red:) forControlEvents:UIControlEventTouchUpInside];
     [keyboard_view addSubview:btn];
-    
+
+    btSave = btn;
 }
 
 - (void)DisplayKeyboardView{
@@ -226,6 +236,7 @@
     [self setScore1:nil];
     [self setScore2:nil];
     [self setTimer:nil];
+    [self setBtStart:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -264,17 +275,40 @@
     //    if ([self.one_pot count]>0)
 //        [self.one_pot removeAllObjects];
 }
+
 - (IBAction)onRestart:(id)sender {
-    if ([self.listData1 count] >0)
-        [self.listData1 removeAllObjects];
-    if ([self.listData2 count]>0)
-        [self.listData2 removeAllObjects];
-    [self.List1 reloadData];
-    [self.List2 reloadData];
+    if (game_status == 0 || game_status == 2){ // start game
+        [self.btStart setTitle:@"Stop" forState:UIControlStateNormal];
+        
+        // clear scores
+        if ([self.listData1 count] >0)
+            [self.listData1 removeAllObjects];
+        if ([self.listData2 count]>0)
+            [self.listData2 removeAllObjects];
+        [self.List1 reloadData];
+        [self.List2 reloadData];
+        
+        // start timer
+        game_timer = [NSTimer scheduledTimerWithTimeInterval:(1.0)target:self selector:@selector(onTimer) userInfo:nil repeats:YES];	
+        //  [t release];
+       
+        time(&t_start);
+        game_status = 1;
+    }else if (game_status == 1){  // stop game
+        NSLog(@"stop");
+        [self.btStart setTitle:@"Start" forState:UIControlStateNormal];
+        game_status = 0;
+        
+        [game_timer invalidate];
+    //    [game_timer release];
+         [self.timer setText:[NSString stringWithFormat:@"%02d:%02d:%02d", 0, 0, 0 ]];
+        
+    }
     
-    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:(1.0)target:self selector:@selector(onTimer) userInfo:nil repeats:YES];	
-  //  [t release];
-    time(&t_start);
+    
+
+    
+ 
 }
 - (void) onTimer
 {
@@ -320,52 +354,55 @@
     UIButton *bsender = sender;
     int score = bsender.tag;
     if (bsender.tag > 0){
-    NSLog(@"add boll");
-    
-    int size = [self.one_pot count];
-    if (size >= 30){
+        NSLog(@"add boll");
         
-        [[[[UIAlertView alloc] initWithTitle:@"error!" message:@"Cannot add more than 30 boll" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease] show];
-        return;
-    }
-    int col = (size)%6;
-    int row = (size)/6;
-    
-    if (row > 0){
-        if (row < 4)
-            input_view.frame = CGRectMake(10, 150, 300, 50*(row+1));
-        [input_view setContentSize:CGSizeMake(300, 50*(row+1))];
-    }
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setFrame:CGRectMake(10+45.0*col+2, 45.0*row+8, 41.0, 41.0)];
-    NSString *image_name = @"";
-    switch (bsender.tag){
-        case 1: image_name = @"redboll.png";break;
-        case 2: image_name = @"yellowboll.png";break; 
-        case 3: image_name = @"greenboll.png";break; 
-        case 4: image_name = @"brownboll.png";break; 
-        case 5: image_name = @"blueboll.png";break; 
-        case 6: image_name = @"pinkboll.png";break;
-        case 7: image_name = @"blackboll.png";break; 
-    }
-    [btn setBackgroundImage:[UIImage imageNamed:image_name] forState:UIControlStateNormal];
-    UIFont *font = [UIFont systemFontOfSize:30.0];
-    btn.titleLabel.font = font;
-    [input_view addSubview:btn];
-    if (row > 3)
-    [input_view scrollRectToVisible:CGRectMake(10+40.0*col+2, 45.0*row+8, 36.0, 41.0) animated:true];
+        int size = [self.one_pot count];
+        if (size >= 30){
+            
+            [[[[UIAlertView alloc] initWithTitle:@"error!" message:@"Cannot add more than 30 boll" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease] show];
+            return;
+        }
+        int col = (size)%6;
+        int row = (size)/6;
+        
+        if (row > 0){
+            if (row < 4)
+                input_view.frame = CGRectMake(10, 150, 300, 50*(row+1));
+            [input_view setContentSize:CGSizeMake(300, 50*(row+1))];
+        }
+        UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setFrame:CGRectMake(10+45.0*col+2, 45.0*row+8, 41.0, 41.0)];
+        NSString *image_name = @"";
+        switch (bsender.tag){
+            case 1: image_name = @"redboll.png";break;
+            case 2: image_name = @"yellowboll.png";break; 
+            case 3: image_name = @"greenboll.png";break; 
+            case 4: image_name = @"brownboll.png";break; 
+            case 5: image_name = @"blueboll.png";break; 
+            case 6: image_name = @"pinkboll.png";break;
+            case 7: image_name = @"blackboll.png";break; 
+        }
+        [btn setBackgroundImage:[UIImage imageNamed:image_name] forState:UIControlStateNormal];
+        UIFont *font = [UIFont systemFontOfSize:30.0];
+        btn.titleLabel.font = font;
+        [input_view addSubview:btn];
+        if (row > 3)
+            [input_view scrollRectToVisible:CGRectMake(10+40.0*col+2, 45.0*row+8, 36.0, 41.0) animated:true];
 
-    [self.btsInInputView addObject:btn];
-    [self.one_pot addObject:[NSNumber numberWithInt:score]];
-    
-   // [btn setTitle:[NSString stringWithFormat:@"%@", @"red"] forState:UIControlStateNormal];
+        [self.btsInInputView addObject:btn];
+        [self.one_pot addObject:[NSNumber numberWithInt:score]];
         
+       // [btn setTitle:[NSString stringWithFormat:@"%@", @"red"] forState:UIControlStateNormal];
+        
+        [btSave setTitle:@"Save" forState:UIControlStateNormal];
     }else if (bsender.tag == -1){
             NSLog(@"backspace");
         if ([self.one_pot count] > 0){
             [[self.btsInInputView lastObject] removeFromSuperview];
             [self.btsInInputView removeLastObject];
             [self.one_pot removeLastObject];
+        }else{
+            [btSave setTitle:@"Close" forState:UIControlStateNormal];
         }
     }else if (bsender.tag == -2){// save
         NSLog(@"save");
