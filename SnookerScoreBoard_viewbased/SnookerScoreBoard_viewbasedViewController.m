@@ -8,6 +8,9 @@
 
 #import "SnookerScoreBoard_viewbasedViewController.h"
 #include <time.h>
+#import "ShareList.h"
+#import "SHK.h"
+#import "SHKActionSheet.h"
 
 @implementation SnookerScoreBoard_viewbasedViewController
 
@@ -19,6 +22,8 @@
 @synthesize List2 = _List2;
 @synthesize listData1,listData2, one_pot, btsInInputView;
 @synthesize game_timer;
+@synthesize Player1;
+@synthesize Player2;
 
 - (void)dealloc
 {
@@ -28,6 +33,8 @@
     [score2 release];
     [timer release];
     [btStart release];
+    [Player1 release];
+    [Player2 release];
     [super dealloc];
 }
 
@@ -67,6 +74,16 @@
     [self InitKeyboardView]; 
    
     self.btsInInputView = [NSMutableArray arrayWithCapacity:30];
+    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];  
+    NSString *value = [ud objectForKey:@"player1"]; 
+    if (value)
+    Player1.text = value;
+    
+   
+    value = [ud stringForKey:@"player2"];  
+    if (value)
+    Player2.text = value;
 }
 
 - (void) InitTableView{
@@ -237,6 +254,8 @@
     [self setScore2:nil];
     [self setTimer:nil];
     [self setBtStart:nil];
+    [self setPlayer1:nil];
+    [self setPlayer2:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -245,8 +264,14 @@
     
     
 }
-
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -277,9 +302,13 @@
 }
 
 - (IBAction)onRestart:(id)sender {
+//    [SHK logoutOfAll];
     if (game_status == 0 || game_status == 2){ // start game
         [self.btStart setTitle:@"Stop" forState:UIControlStateNormal];
         
+        // clear timer
+        [self.timer setText:[NSString stringWithFormat:@"%02d:%02d:%02d", 0, 0, 0 ]];
+
         // clear scores
         if ([self.listData1 count] >0)
             [self.listData1 removeAllObjects];
@@ -287,6 +316,8 @@
             [self.listData2 removeAllObjects];
         [self.List1 reloadData];
         [self.List2 reloadData];
+        [self.score1 setText:@"0"];
+        [self.score2 setText:@"0"];
         
         // start timer
         game_timer = [NSTimer scheduledTimerWithTimeInterval:(1.0)target:self selector:@selector(onTimer) userInfo:nil repeats:YES];	
@@ -301,14 +332,89 @@
         
         [game_timer invalidate];
     //    [game_timer release];
-         [self.timer setText:[NSString stringWithFormat:@"%02d:%02d:%02d", 0, 0, 0 ]];
+
+            
+        ShareList* sl = [ShareList alloc];
+        [sl initWithNibName:@"ShareView" bundle:nil];
         
-    }
+        [self.navigationController pushViewController:sl animated:YES];
+        
+        NSString* shareMsg;
+        int s1 = [self.score1.text integerValue];
+        int s2 = [self.score2.text integerValue];
+        NSString* winner = Player1.text;
+        NSString* loser = Player2.text;
+        int hb_player1 = 0;
+        int hb_player2 = 0;
+        int sum = 0;
+        for (int i = 0; i< [listData1 count]; i++){
+            sum = 0;
+            NSMutableArray* pot = [listData1 objectAtIndex:i];
+            for (int j = 0; j<[pot count]; j++){
+                sum += [[pot objectAtIndex:j] integerValue];
+            }
+            if (sum > hb_player1)
+                hb_player1 = sum;
+        }
+        for (int i = 0; i< [listData2 count]; i++){
+            sum = 0;
+            NSMutableArray* pot = [listData2 objectAtIndex:i];
+            for (int j = 0; j<[pot count]; j++){
+                sum += [[pot objectAtIndex:j] integerValue];
+            }
+            if (sum > hb_player2)
+                hb_player2 = sum;
+        }
+
+        if (s1 == s2){
+            [sl.text setText:[ [NSString alloc] initWithFormat:@"Draw !\nGame last %@ \nFinal Score: %d to %d\nHighest break %d-%d ", [self.timer text], s1, s2, hb_player1, hb_player2] ];
+            sl.shareMsg =[[NSString alloc] initWithFormat:@"%@ tie %@ in a just finished snooker game!\nGame last %@ \nFinal Score: %d to %d\nHighest break %d-%d ", Player1.text, Player2.text, [self.timer text], s1, s2, hb_player1, hb_player2];
+        }else{
+            if (s1 < s2){
+                winner = Player2.text;
+                loser = Player1.text;
+            }
+                       
+            if (s1 < s2){
+                [sl.text setText:[[NSString alloc] initWithFormat:@"%@ win ! \nFinal Score %d-%d \nGame last %@ \nHighest break %d-%d", winner, s1, s2, [self.timer text], hb_player1, hb_player2]];
+            
+                sl.shareMsg =[[NSString alloc] initWithFormat:@"%@ beat %@ %d-%d in a just finished Snooker Game!\nGame last %@ \nHighest break %d-%d", winner, loser, s2, s1, [self.timer text], hb_player2, hb_player1];
+            }
+            else{
+                [sl.text setText:[[NSString alloc] initWithFormat:@"%@ win ! \nFinal Score %d-%d \nGame last %@ \nHighest break %d-%d", winner, s1, s2, [self.timer text], hb_player1, hb_player2]];
+                sl.shareMsg = [[NSString alloc] initWithFormat:@"%@ beat %@ %d-%d in a just finished Snooker Game!\nGame last %@ \nHighest break %d-%d", winner, loser, s1, s2, [self.timer text], hb_player1, hb_player2];
+            }
+        }
+        
+      
+        [sl release];
+                 
+           }
     
     
 
     
  
+}
+
+- (IBAction)onShare:(id)sender {
+    // Create the item to share (in this example, a url)
+	NSURL *url = [NSURL URLWithString:@"http://getsharekit.com"];
+	SHKItem *item = [SHKItem URL:url title:@"ShareKit is Awesome!"];
+    
+	// Get the ShareKit action sheet
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    
+	// Display the action sheet
+	[actionSheet showFromToolbar:self.navigationController.toolbar];
+
+}
+
+- (IBAction)onChangePlay1Name:(id)sender {
+    NSString *string = [self.Player1 text]; 
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];  
+    [ud setObject:string forKey:@"player1"];  
+
 }
 - (void) onTimer
 {
@@ -321,6 +427,15 @@
     [self.timer setText:[NSString stringWithFormat:@"%02d:%02d:%02d", h, m, s ]];
 }
 - (IBAction)AddScore1:(id)sender {
+    if (game_status != 1){
+        UIAlertView  *alert = [[ UIAlertView   alloc ]  initWithTitle :@"Game not started."
+                                                              message :@""
+                                                             delegate : nil   cancelButtonTitle : @"OK"
+                                                    otherButtonTitles : nil ];
+        [alert  show ];
+        [alert  release ];
+        return;
+    }
     // show keyboard and input view
     keyboard_view.hidden  = NO;
     [UIView beginAnimations:nil context:NULL];
@@ -336,6 +451,15 @@
 }
 
 - (IBAction)AddScore2:(id)sender {
+    if (game_status != 1){
+        UIAlertView  *alert = [[ UIAlertView   alloc ]  initWithTitle :@"Game not started."
+                                                              message :@""
+                                                             delegate : nil   cancelButtonTitle : @"OK"
+                                                    otherButtonTitles : nil ];
+        [alert  show ];
+        [alert  release ];
+        return;
+    }
     // show keyboard and input view
     keyboard_view.hidden  = NO;
     [UIView beginAnimations:nil context:NULL];
@@ -610,17 +734,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+//    if (game_status != 1){
+//        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//        return;
+//    }
     NSUInteger row = [indexPath row];
 //    NSString *rowValue;
     
     // show keyboard and input view
-    keyboard_view.hidden  = NO;
+    if (game_status == 1) // only show keyboard when game is started
+        keyboard_view.hidden  = NO;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
     [keyboard_view setFrame:CGRectMake(0, 360, 320, 100)];
     [UIView commitAnimations];
 
+
+    // show input boll in one pot
     input_view.hidden = NO;
 
     [self cleanInputView];
@@ -709,4 +839,10 @@
      
      
      
+- (IBAction)onChangePlayer2:(id)sender {
+    NSString *string = [self.Player2 text]; 
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];  
+    [ud setObject:string forKey:@"player2"];  
+
+}
 @end

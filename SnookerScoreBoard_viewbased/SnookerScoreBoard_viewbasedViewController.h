@@ -30,7 +30,10 @@
     int game_status; // 0: init value, 1: started, 2: over
     UIButton *btSave; // save button in keyboard
     NSTimer* game_timer;
+    UITextField *Player1;
+    UITextField *Player2;
 }
+- (IBAction)onChangePlayer2:(id)sender;
 @property (nonatomic, retain) IBOutlet UITableView *List1;
 
 @property (nonatomic, retain) IBOutlet UILabel *score1;
@@ -44,8 +47,12 @@
 @property (nonatomic, retain) NSMutableArray *one_pot;
 @property (nonatomic, retain) NSMutableArray *btsInInputView;
 @property (nonatomic, retain) NSTimer *game_timer;
+@property (nonatomic, retain) IBOutlet UITextField *Player1;
+@property (nonatomic, retain) IBOutlet UITextField *Player2;
 
 - (IBAction)onRestart:(id)sender;
+- (IBAction)onShare:(id)sender;
+- (IBAction)onChangePlay1Name:(id)sender;
 
 - (IBAction)AddScore1:(id)sender;
 - (IBAction)AddScore2:(id)sender;
@@ -57,7 +64,8 @@
 - (void) update_score;
 - (void) onTimer;
 
-
-
+// view event
+- (void)viewWillAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
 
 @end

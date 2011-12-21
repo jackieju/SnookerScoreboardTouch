@@ -9,10 +9,12 @@
 #import "SnookerScoreBoard_viewbasedAppDelegate.h"
 
 #import "SnookerScoreBoard_viewbasedViewController.h"
-
+#import "SHKReadItLater.h"
+#import "SHKFacebook.h"
 @implementation SnookerScoreBoard_viewbasedAppDelegate
 
 
+@synthesize navigationController = _navigationController;
 @synthesize window=_window;
 
 @synthesize viewController=_viewController;
@@ -21,8 +23,19 @@
 {
     // Override point for customization after application launch.
      
-    self.window.rootViewController = self.viewController;
+   // self.window.rootViewController = self.viewController;
+    
+    [self.window addSubview:[_navigationController view]];
+    
     [self.window makeKeyAndVisible];
+    
+  
+	//_navigationController.topViewController.title = SHKLocalizedString(@"Examples");
+    [_navigationController setNavigationBarHidden:TRUE];
+	[_navigationController setToolbarHidden:YES];
+	
+	//[self performSelector:@selector(testOffline) withObject:nil afterDelay:0.5];
+	
     return YES;
 }
 
@@ -69,6 +82,7 @@
 {
     [_window release];
     [_viewController release];
+    [_navigationController release];
     [super dealloc];
 }
 

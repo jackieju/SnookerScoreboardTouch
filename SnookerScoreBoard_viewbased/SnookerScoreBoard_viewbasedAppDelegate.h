@@ -12,7 +12,9 @@
 
 @interface SnookerScoreBoard_viewbasedAppDelegate : NSObject <UIApplicationDelegate> {
 
+    UINavigationController *_navigationController;
 }
+@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
