@@ -96,10 +96,12 @@
 		5AA7F931149F63EE005DE341 /* ShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AA7F92F149F63EE005DE341 /* ShareView.xib */; };
 		5AA7F93514A05064005DE341 /* ShareList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA7F93314A05063005DE341 /* ShareList.m */; };
 		5AAF7DED14A0E265001FD007 /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAF7DEC14A0E265001FD007 /* SinaWeibo.m */; };
+		5AAF7E0A14A1E487001FD007 /* logo57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AAF7E0814A1E487001FD007 /* logo57x57.png */; };
+		5AAF7E0B14A1E487001FD007 /* logo72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AAF7E0914A1E487001FD007 /* logo72x72.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5A54BCAD13E508E3007BAA97 /* SnookerScoreBoard_viewbased.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnookerScoreBoard_viewbased.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A54BCAD13E508E3007BAA97 /* Snooker Scoreboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snooker Scoreboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A54BCB113E508E3007BAA97 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5A54BCB313E508E3007BAA97 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5A54BCB513E508E3007BAA97 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -260,6 +262,8 @@
 		5AA7F93314A05063005DE341 /* ShareList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareList.m; sourceTree = "<group>"; };
 		5AAF7DEB14A0E265001FD007 /* SinaWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeibo.h; sourceTree = "<group>"; };
 		5AAF7DEC14A0E265001FD007 /* SinaWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeibo.m; sourceTree = "<group>"; };
+		5AAF7E0814A1E487001FD007 /* logo57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo57x57.png; sourceTree = "<group>"; };
+		5AAF7E0914A1E487001FD007 /* logo72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo72x72.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,7 +297,7 @@
 		5A54BCAE13E508E3007BAA97 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5A54BCAD13E508E3007BAA97 /* SnookerScoreBoard_viewbased.app */,
+				5A54BCAD13E508E3007BAA97 /* Snooker Scoreboard.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -353,6 +357,8 @@
 				5AA7F834149F3C62005DE341 /* back.jpg */,
 				5AA7F838149F52C9005DE341 /* frame.jpg */,
 				5AA7F836149F4BA0005DE341 /* name1.png */,
+				5AAF7E0814A1E487001FD007 /* logo57x57.png */,
+				5AAF7E0914A1E487001FD007 /* logo72x72.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -742,7 +748,7 @@
 			);
 			name = SnookerScoreBoard_viewbased;
 			productName = SnookerScoreBoard_viewbased;
-			productReference = 5A54BCAD13E508E3007BAA97 /* SnookerScoreBoard_viewbased.app */;
+			productReference = 5A54BCAD13E508E3007BAA97 /* Snooker Scoreboard.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -791,6 +797,8 @@
 				5AA7F906149F5D34005DE341 /* Localizable.strings in Resources */,
 				5AA7F90D149F5D34005DE341 /* FBConnect.bundle in Resources */,
 				5AA7F931149F63EE005DE341 /* ShareView.xib in Resources */,
+				5AAF7E0A14A1E487001FD007 /* logo57x57.png in Resources */,
+				5AAF7E0B14A1E487001FD007 /* logo72x72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -930,6 +938,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "Snooker Scoreboard";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -938,13 +947,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "Snooker Scoreboard";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -958,7 +969,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Prefix.pch";
 				INFOPLIST_FILE = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Snooker Scoreboard";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -967,11 +978,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Prefix.pch";
 				INFOPLIST_FILE = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Snooker Scoreboard";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

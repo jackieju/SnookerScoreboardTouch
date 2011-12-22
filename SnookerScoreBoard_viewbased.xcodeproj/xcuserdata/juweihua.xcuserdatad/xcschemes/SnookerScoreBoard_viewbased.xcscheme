@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5A54BCAC13E508E3007BAA97"
-               BuildableName = "SnookerScoreBoard_viewbased.app"
+               BuildableName = "Snooker Scoreboard.app"
                BlueprintName = "SnookerScoreBoard_viewbased"
                ReferencedContainer = "container:SnookerScoreBoard_viewbased.xcodeproj">
             </BuildableReference>
@@ -41,7 +41,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5A54BCAC13E508E3007BAA97"
-            BuildableName = "SnookerScoreBoard_viewbased.app"
+            BuildableName = "Snooker Scoreboard.app"
             BlueprintName = "SnookerScoreBoard_viewbased"
             ReferencedContainer = "container:SnookerScoreBoard_viewbased.xcodeproj">
          </BuildableReference>
@@ -60,7 +60,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5A54BCAC13E508E3007BAA97"
-            BuildableName = "SnookerScoreBoard_viewbased.app"
+            BuildableName = "Snooker Scoreboard.app"
             BlueprintName = "SnookerScoreBoard_viewbased"
             ReferencedContainer = "container:SnookerScoreBoard_viewbased.xcodeproj">
          </BuildableReference>
