@@ -101,7 +101,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5A54BCAD13E508E3007BAA97 /* Snooker Scoreboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snooker Scoreboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A54BCAD13E508E3007BAA97 /* Snooker Scoreboard touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snooker Scoreboard touch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A54BCB113E508E3007BAA97 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5A54BCB313E508E3007BAA97 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5A54BCB513E508E3007BAA97 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -297,7 +297,7 @@
 		5A54BCAE13E508E3007BAA97 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5A54BCAD13E508E3007BAA97 /* Snooker Scoreboard.app */,
+				5A54BCAD13E508E3007BAA97 /* Snooker Scoreboard touch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -748,7 +748,7 @@
 			);
 			name = SnookerScoreBoard_viewbased;
 			productName = SnookerScoreBoard_viewbased;
-			productReference = 5A54BCAD13E508E3007BAA97 /* Snooker Scoreboard.app */;
+			productReference = 5A54BCAD13E508E3007BAA97 /* Snooker Scoreboard touch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -969,7 +969,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Prefix.pch";
 				INFOPLIST_FILE = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Info.plist";
-				PRODUCT_NAME = "Snooker Scoreboard";
+				PRODUCT_NAME = "Snooker Scoreboard touch";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -983,7 +983,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Prefix.pch";
 				INFOPLIST_FILE = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Info.plist";
-				PRODUCT_NAME = "Snooker Scoreboard";
+				PRODUCT_NAME = "Snooker Scoreboard touch";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
