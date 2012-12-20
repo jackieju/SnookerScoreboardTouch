@@ -13,12 +13,12 @@
     
     UIView* keyboard_view; // the view for display keyboard
     
-    UITableView *List1;
+
     UILabel *score1;
     UILabel *score2;
     UILabel *timer;
     UIButton *btStart;
-    UITableView *List2;
+
     
     NSMutableArray *btsInInputView;
     NSMutableArray *one_pot;
@@ -35,7 +35,10 @@
 }
 - (IBAction)onChangePlayer2:(id)sender;
 @property (nonatomic, retain) IBOutlet UITableView *List1;
+@property (retain, nonatomic) IBOutlet UIImageView *ivBG;
 
+@property (retain, nonatomic) IBOutlet UIImageView *ivList1Frm;
+@property (retain, nonatomic) IBOutlet UIImageView *ivList2Frm;
 @property (nonatomic, retain) IBOutlet UILabel *score1;
 @property (nonatomic, retain) IBOutlet UILabel *score2;
 @property (nonatomic, retain) IBOutlet UILabel *timer;

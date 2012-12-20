@@ -390,4 +390,7 @@
     [alert  show ];
     [alert  release ];
 }
+- (void)sendDidCancel{
+    
+}
 @end

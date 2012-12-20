@@ -98,6 +98,9 @@
 		5AAF7DED14A0E265001FD007 /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAF7DEC14A0E265001FD007 /* SinaWeibo.m */; };
 		5AAF7E0A14A1E487001FD007 /* logo57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AAF7E0814A1E487001FD007 /* logo57x57.png */; };
 		5AAF7E0B14A1E487001FD007 /* logo72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AAF7E0914A1E487001FD007 /* logo72x72.png */; };
+		5AE9A59B168291A900F4CC2B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE9A59A168291A900F4CC2B /* Default.png */; };
+		5AE9A59E168291A900F4CC2B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE9A59D168291A900F4CC2B /* Default@2x.png */; };
+		5AE9A5A0168291A900F4CC2B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE9A59F168291A900F4CC2B /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -264,6 +267,9 @@
 		5AAF7DEC14A0E265001FD007 /* SinaWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeibo.m; sourceTree = "<group>"; };
 		5AAF7E0814A1E487001FD007 /* logo57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo57x57.png; sourceTree = "<group>"; };
 		5AAF7E0914A1E487001FD007 /* logo72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo72x72.png; sourceTree = "<group>"; };
+		5AE9A59A168291A900F4CC2B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		5AE9A59D168291A900F4CC2B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		5AE9A59F168291A900F4CC2B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +292,9 @@
 		5A54BCA213E508E2007BAA97 = {
 			isa = PBXGroup;
 			children = (
+				5AE9A59F168291A900F4CC2B /* Default-568h@2x.png */,
+				5AE9A59D168291A900F4CC2B /* Default@2x.png */,
+				5AE9A59A168291A900F4CC2B /* Default.png */,
 				5AA7F84C149F5D34005DE341 /* ShareKit */,
 				5A87D35613E6B3ED00480A87 /* Resources */,
 				5A54BCB713E508E3007BAA97 /* SnookerScoreBoard_viewbased */,
@@ -799,6 +808,9 @@
 				5AA7F931149F63EE005DE341 /* ShareView.xib in Resources */,
 				5AAF7E0A14A1E487001FD007 /* logo57x57.png in Resources */,
 				5AAF7E0B14A1E487001FD007 /* logo72x72.png in Resources */,
+				5AE9A59B168291A900F4CC2B /* Default.png in Resources */,
+				5AE9A59E168291A900F4CC2B /* Default@2x.png in Resources */,
+				5AE9A5A0168291A900F4CC2B /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -968,6 +980,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Info.plist";
 				PRODUCT_NAME = "Snooker Scoreboard touch";
 				WRAPPER_EXTENSION = app;
@@ -982,6 +995,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "SnookerScoreBoard_viewbased/SnookerScoreBoard_viewbased-Info.plist";
 				PRODUCT_NAME = "Snooker Scoreboard touch";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

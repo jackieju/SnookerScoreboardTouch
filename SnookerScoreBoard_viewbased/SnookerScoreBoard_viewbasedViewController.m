@@ -14,16 +14,20 @@
 
 @implementation SnookerScoreBoard_viewbasedViewController
 
-@synthesize List1 = _List1;
+@synthesize List1;
 @synthesize score1;
 @synthesize score2;
 @synthesize timer;
 @synthesize btStart;
-@synthesize List2 = _List2;
+@synthesize List2;
 @synthesize listData1,listData2, one_pot, btsInInputView;
 @synthesize game_timer;
 @synthesize Player1;
 @synthesize Player2;
+@synthesize ivList1Frm;
+@synthesize ivList2Frm;
+@synthesize ivBG;
+
 
 - (void)dealloc
 {
@@ -35,6 +39,9 @@
     [btStart release];
     [Player1 release];
     [Player2 release];
+    [ivList1Frm release];
+    [ivList2Frm release];
+    [ivBG release];
     [super dealloc];
 }
 
@@ -84,8 +91,45 @@
     value = [ud stringForKey:@"player2"];  
     if (value)
     Player2.text = value;
-}
 
+    
+//    List1.frame = CGRectMake(41, 131, 97, 246);
+//    List2.frame = CGRectMake(177, 131, 97, 246);
+//    [self adjustHeight:List1];
+//    [self adjustHeight:List2];
+    [self adjustHeight:ivList1Frm];
+    [self adjustHeight:ivList2Frm];
+    [self adjustPosition:btStart];
+        [self adjustHeight:ivBG];
+    
+    CGRect r1 = ivList1Frm.frame;
+    CGRect r11= List1.frame;
+    r11.size.height = r1.size.height-25;
+    List1.frame = r11;
+    
+    
+    CGRect r2 = ivList2Frm.frame;
+    CGRect r22= List2.frame;
+    r22.size.height = r2.size.height-25;
+    List2.frame = r22;
+    
+}
+- (void) adjustPosition:(UIView*)v{
+    CGRect r = v.frame;
+    if ([UIScreen mainScreen].bounds.size.height > 480){
+        CGRect rect = [UIScreen mainScreen].bounds;
+        r.origin.y = r.origin.y*[UIScreen mainScreen].bounds.size.height/480.0f;
+        v.frame =r;
+    }
+}
+- (void) adjustHeight:(UIView*)v{
+    CGRect r = v.frame;
+    if ([UIScreen mainScreen].bounds.size.height > 480){
+        CGRect rect = [UIScreen mainScreen].bounds;
+        r.size.height = r.size.height*[UIScreen mainScreen].bounds.size.height/480.0f;
+        v.frame =r;
+    }
+}
 - (void) InitTableView{
 
     
@@ -95,29 +139,29 @@
   
     
     // configure table view
-    [_List1 setDataSource:self];
-    [_List1 setDelegate:self];
-    _List1.scrollEnabled = YES;
-    _List1.tag = 100;
+    [List1 setDataSource:self];
+    [List1 setDelegate:self];
+    List1.scrollEnabled = YES;
+    List1.tag = 100;
 //    //为视图增加边框      
-//    _List1.clipsToBounds=YES;      
-//    _List1.layer  cornerRadius=20.0;      
-//    _List1.layer.borderWidth=10.0;      
-//    _List1.layer.borderColor=[[UIColor blueColor] CGColor];      
+//    List1.clipsToBounds=YES;      
+//    List1.layer  cornerRadius=20.0;      
+//    List1.layer.borderWidth=10.0;      
+//    List1.layer.borderColor=[[UIColor blueColor] CGColor];      
 //    
 //    //为视图添加圆角
 //    
-//    _List1.layer.cornerRadius = 6;
-//    _List1.layer.masksToBounds = YES;
+//    List1.layer.cornerRadius = 6;
+//    List1.layer.masksToBounds = YES;
     
 
-    [self.view addSubview:_List1];   
+    [self.view addSubview:List1];   
     
-    [_List2 setDataSource:self];
-    [_List2 setDelegate:self];
-    _List2.scrollEnabled = YES;
-    _List2.tag = 200;
-    [self.view addSubview:_List2];  
+    [List2 setDataSource:self];
+    [List2 setDelegate:self];
+    List2.scrollEnabled = YES;
+    List2.tag = 200;
+    [self.view addSubview:List2];  
 }
 
 - (void)InitKeyboardView{
@@ -256,6 +300,9 @@
     [self setBtStart:nil];
     [self setPlayer1:nil];
     [self setPlayer2:nil];
+    [self setIvList1Frm:nil];
+    [self setIvList2Frm:nil];
+    [self setIvBG:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -304,6 +351,7 @@
 - (IBAction)onRestart:(id)sender {
 //    [SHK logoutOfAll];
     if (game_status == 0 || game_status == 2){ // start game
+        input_view.hidden = YES;
         [self.btStart setTitle:@"Stop" forState:UIControlStateNormal];
         
         // clear timer
@@ -440,7 +488,8 @@
     keyboard_view.hidden  = NO;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    [keyboard_view setFrame:CGRectMake(0, 360, 320, 100)];
+    [keyboard_view setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height-120, 320, 100)];
+  
     [UIView commitAnimations];
     input_view.hidden = NO;
     self.one_pot = [NSMutableArray arrayWithCapacity:30];
@@ -464,7 +513,7 @@
     keyboard_view.hidden  = NO;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    [keyboard_view setFrame:CGRectMake(0, 360, 320, 100)];
+    [keyboard_view setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height-120, 320, 100)];
     [UIView commitAnimations];
     input_view.hidden = NO;
     self.one_pot = [NSMutableArray arrayWithCapacity:30];
@@ -556,7 +605,7 @@
 
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.5];
-        [keyboard_view setFrame:CGRectMake(0, 480, 320, 100)];
+        [keyboard_view setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, 320, 100)];
         [UIView commitAnimations];
         keyboard_view.hidden  = YES;
         input_view.hidden = YES;
@@ -746,7 +795,7 @@
         keyboard_view.hidden  = NO;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    [keyboard_view setFrame:CGRectMake(0, 360, 320, 100)];
+    [keyboard_view setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height-120, 320, 100)];
     [UIView commitAnimations];
 
 
@@ -777,6 +826,9 @@
     
     // load bolls
     if (currentRow >=0 ){
+        int row_number =[self.one_pot count]/6;
+        input_view.frame = CGRectMake(10, 150, 300, 50*(row_number+1));
+        [input_view setContentSize:CGSizeMake(300, 50*(row_number+1))];
         for (int i = 0; i< [self.one_pot count]; i++){
             int col = (i)%6;
             int row = (i)/6;
@@ -796,6 +848,7 @@
             UIFont *font = [UIFont systemFontOfSize:30.0];
             btn.titleLabel.font = font;
             [input_view addSubview:btn];
+
             if (row > 3)
                 [input_view scrollRectToVisible:CGRectMake(10+40.0*col+2, 45.0*row+8, 36.0, 41.0) animated:true];
             
@@ -844,5 +897,9 @@
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];  
     [ud setObject:string forKey:@"player2"];  
 
+}
+- (void)returnView
+{
+    [self.parentViewController dismissModalViewControllerAnimated:YES];
 }
 @end
